@@ -78,13 +78,17 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_route_table" "external_rt" {
   vpc_id = aws_vpc.main_vpc.id
 
-  route {
-    cidr_block = var.vpc_cidr
-    gateway_id = aws_internet_gateway.igw.id
-  }
-
   tags = {
     Name = "70491_external_rt"
   }
+}
+
+resource "aws_route_table" "internal_rt" {
+  vpc_id = aws_vpc.main_vpc.id
+
+  tags = {
+    Name = "70491_internal_rt"
+  }
+  
 }
 #############################################
