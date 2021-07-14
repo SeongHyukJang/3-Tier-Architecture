@@ -26,7 +26,6 @@ resource "aws_vpc" "main_vpc" {
   }
 }
 #############################################
-
 ################# Subnet ####################
 resource "aws_subnet" "public_subnet" {
   vpc_id = aws_vpc.main_vpc.id
@@ -54,6 +53,7 @@ resource "aws_subnet" "db_private_subnet" {
     Name = "70491_db_private_subnet"
   }
 }
+#############################################
 ########## Internet Gateway #################
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main_vpc.id
@@ -63,17 +63,6 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 #############################################
-
-
-#############################################
-################## Route ####################
-# resource "aws_route" "igw" {
-#   route_table_id = aws_route_table.external_rt
-#   des
-# }
-
-#############################################
-
 ############## Route Table ##################
 resource "aws_route_table" "external_rt" {
   vpc_id = aws_vpc.main_vpc.id
@@ -90,5 +79,12 @@ resource "aws_route_table" "internal_rt" {
     Name = "70491_internal_rt"
   }
   
+}
+#############################################
+################# Route #####################
+resource "aws_route" "ext_route" {
+  route_table_id = aws_route_table.external_rt.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id = aws_internet_gateway.igw.id
 }
 #############################################
