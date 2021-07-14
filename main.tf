@@ -90,15 +90,15 @@ resource "aws_route" "ext_route" {
 #############################################
 ########### Route Table Association #########
 resource "aws_route_table_association" "ext_rt_subnet" {
-  subnet_id = var.public_subnet
+  subnet_id = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.external_rt.id
 }
 resource "aws_route_table_association" "int_rt_subnet_ap" {
-  subnet_id = var.ap_private_subnet
+  subnet_id = aws_subnet.ap_private_subnet.id
   route_table_id = aws_route_table.internal_rt.id
 }
 resource "aws_route_table_association" "int_rt_subnet_db" {
-  subnet_id = var.db_private_subnet
+  subnet_id = aws_subnet.db_private_subnet.id
   route_table_id = aws_route_table.internal_rt.id
 }
 #############################################
