@@ -102,3 +102,16 @@ resource "aws_route_table_association" "int_rt_subnet_db" {
   route_table_id = aws_route_table.internal_rt.id
 }
 #############################################
+############### NAT Gateway #################
+resource "aws_eip" "nat_ip" {
+  vpc = true
+}
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat_ip.id
+  connectivity_type = "public"
+  subnet_id = aws_subnet.public_subnet.id
+  tags = {
+    Name = "70491_nat"
+  }
+}
+#############################################
