@@ -79,7 +79,6 @@ resource "aws_route_table" "external_rt" {
   vpc_id = aws_vpc.main_vpc.id
 
   route {
-    cidr_block = var.public_subnet
     gateway_id = aws_internet_gateway.igw.id
   }
 
