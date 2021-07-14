@@ -14,7 +14,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "ap-northeast-2"
+  region = var.region
 }
 
 ################# VPC #######################
@@ -30,7 +30,7 @@ resource "aws_vpc" "main_vpc" {
 ################# Subnet ####################
 resource "aws_subnet" "public_subnet" {
   vpc_id = aws_vpc.main_vpc.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.public_subnet
 
   tags = {
     Name = "70491_public_subnet"
@@ -39,7 +39,7 @@ resource "aws_subnet" "public_subnet" {
 
 resource "aws_subnet" "ap_private_subnet" {
   vpc_id = aws_vpc.main_vpc.id
-  cidr_block = "10.0.2.0/24"
+  cidr_block = var.ap_private_subnet
 
   tags = {
     Name = "70491_ap_private_subnet"
@@ -48,16 +48,43 @@ resource "aws_subnet" "ap_private_subnet" {
 
 resource "aws_subnet" "db_private_subnet" {
   vpc_id = aws_vpc.main_vpc.id
-  cidr_block = "10.0.3.0/24"
+  cidr_block = var.db_private_subnet
 
   tags = {
     Name = "70491_db_private_subnet"
   }
 }
-#############################################
-############## Route Table ##################
-# resource "aws_route_table" "external_rt" {
-#   vpc_id = aws_vpc.main_vpc
+########## Internet Gateway #################
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main_vpc.id
 
+  tags = {
+    Name = "70491_igw"
+  }
+}
+#############################################
+
+
+#############################################
+################## Route ####################
+# resource "aws_route" "igw" {
+#   route_table_id = aws_route_table.external_rt
+#   des
 # }
+
+#############################################
+
+############## Route Table ##################
+resource "aws_route_table" "external_rt" {
+  vpc_id = aws_vpc.main_vpc.id
+
+  route {
+    cidr_block = var.public_subnet
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "70491_external_rt"
+  }
+}
 #############################################
