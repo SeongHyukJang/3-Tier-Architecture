@@ -88,3 +88,17 @@ resource "aws_route" "ext_route" {
   gateway_id = aws_internet_gateway.igw.id
 }
 #############################################
+########### Route Table Association #########
+resource "aws_route_table_association" "ext_rt_subnet" {
+  subnet_id = var.public_subnet
+  route_table_id = aws_route_table.external_rt.id
+}
+resource "aws_route_table_association" "int_rt_subnet_ap" {
+  subnet_id = var.ap_private_subnet
+  route_table_id = aws_route_table.internal_rt.id
+}
+resource "aws_route_table_association" "int_rt_subnet_db" {
+  subnet_id = var.db_private_subnet
+  route_table_id = aws_route_table.internal_rt.id
+}
+#############################################
