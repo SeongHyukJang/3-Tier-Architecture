@@ -1,1 +1,1 @@
-# tfc-3tier-architecture
+# tfc-aws-architecture
