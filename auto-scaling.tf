@@ -2,6 +2,7 @@ resource "aws_lb" "web_elb" {
     name = "70491-web-elb"
     internal = false
     load_balancer_type = "application"
+    security_groups = [aws_security_group.web_sg.id]
     subnets = [aws_subnet.public_subnet_a.id, aws_subnet.public_subnet_c.id]
     
 }
@@ -20,14 +21,10 @@ resource "aws_autoscaling_group" "web_autoscaling_group" {
     min_size = 1
     max_size = 2
     desired_capacity = 1
+    target_group_arns = [aws_lb.web_elb.arn]
 
     launch_template {
         id = aws_launch_template.ec2_web_template.id
     }
     vpc_zone_identifier = [aws_subnet.ap_private_subnet_a.id, aws_subnet.ap_private_subnet_c.id]
-}
-
-resource "aws_autoscaling_attachment" "autoscaling_group_elb_attachment" {
-    autoscaling_group_name = aws_autoscaling_group.web_autoscaling_group.id
-    elb = aws_lb.web_elb.id
 }
