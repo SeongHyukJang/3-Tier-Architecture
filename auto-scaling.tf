@@ -1,5 +1,5 @@
 resource "aws_elb" "web_elb" {
-    name = "web-elb"
+    name = "70491-web-elb"
     subnets = [aws_subnet.public_subnet_a.id, aws_subnet.public_subnet_c.id]
     instances = []
 
@@ -33,9 +33,14 @@ resource "aws_autoscaling_group" "web_autoscaling_group" {
     min_size = 1
     max_size = 2
     desired_capacity = 1
-    target_group_arns = [aws_elb.web_elb.arn]
+
     launch_template {
         id = aws_launch_template.ec2_web_template.id
     }
     vpc_zone_identifier = [aws_subnet.ap_private_subnet_a.id, aws_subnet.ap_private_subnet_c.id]
+}
+
+resource "aws_autoscaling_attachment" "autoscaling_group_elb_attachment" {
+    autoscaling_group_name = aws_autoscaling_group.web_autoscaling_group.id
+    elb = aws_elb.web_elb.id
 }
