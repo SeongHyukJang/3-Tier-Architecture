@@ -1,14 +1,9 @@
-resource "aws_elb" "web_elb" {
+resource "aws_lb" "web_elb" {
     name = "70491-web-elb"
+    internal = false
+    load_balancer_type = "application"
     subnets = [aws_subnet.public_subnet_a.id, aws_subnet.public_subnet_c.id]
-    instances = []
-
-    listener {
-      instance_port = 8000
-      instance_protocol = "http"
-      lb_port = 80
-      lb_protocol = "http"
-    }
+    
 }
 
 resource "aws_launch_template" "ec2_web_template" {
@@ -34,5 +29,5 @@ resource "aws_autoscaling_group" "web_autoscaling_group" {
 
 resource "aws_autoscaling_attachment" "autoscaling_group_elb_attachment" {
     autoscaling_group_name = aws_autoscaling_group.web_autoscaling_group.id
-    elb = aws_elb.web_elb.id
+    elb = aws_lb.web_elb.id
 }
