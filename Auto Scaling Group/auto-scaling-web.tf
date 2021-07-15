@@ -4,7 +4,6 @@ resource "aws_lb" "web_elb" {
     load_balancer_type = "application"
     security_groups = [aws_security_group.web_sg.id]
     subnets = [aws_subnet.public_subnet_a.id, aws_subnet.public_subnet_c.id]
-    
 }
 
 resource "aws_lb_target_group" "ec2_web_target_group" {
