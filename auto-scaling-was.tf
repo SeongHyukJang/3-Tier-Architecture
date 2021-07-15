@@ -2,7 +2,6 @@ resource "aws_lb" "was_elb" {
     name = "70491-was-elb"
     internal = true
     load_balancer_type = "network"
-    security_groups = [aws_security_group.was_sg.id]
     subnets = [aws_subnet.ap_private_subnet_a.id, aws_subnet.ap_private_subnet_c.id]
 }
 
