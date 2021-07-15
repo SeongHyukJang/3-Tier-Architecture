@@ -48,3 +48,7 @@ variable "db_private_subnet_c" {
     description = "db private subnet"
     default = "10.0.6.0/24"
 }
+
+variable "key_pair_ec2_web_a" {
+    default = "70491_ec2_web_a"
+}
