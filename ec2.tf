@@ -42,7 +42,7 @@ resource "aws_instance" "ec2_was_a"{
     instance_type = "t2.micro"
     subnet_id = aws_subnet.ap_private_subnet_a.id 
     availability_zone = var.az_a
-    security_groups = [aws_security_group.was_sb.id]
+    security_groups = [aws_security_group.was_sg.id]
     key_name = var.key_pair_ec2_was_a
 
     root_block_device {
@@ -62,7 +62,7 @@ resource "aws_instance" "ec2_was_c"{
     instance_type = "t2.micro"
     subnet_id = aws_subnet.ap_private_subnet_c.id 
     availability_zone = var.az_c
-    security_groups = [aws_security_group.was_sb.id]
+    security_groups = [aws_security_group.was_sg.id]
     key_name = var.key_pair_ec2_was_c
 
     root_block_device {
