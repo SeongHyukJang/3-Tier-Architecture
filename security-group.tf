@@ -44,7 +44,7 @@ resource "aws_security_group" "web_sg" {
 }
 
 resource "aws_security_group" "was_sg" {
-    name = "web_sg"
+    name = "was_sg"
     description = "security group for web server"
     vpc_id = aws_vpc.main_vpc.id
 
