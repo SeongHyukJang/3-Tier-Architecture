@@ -1,6 +1,6 @@
 resource "aws_security_group" "web_sg" {
     name = "web_sg"
-    description = "security group for web server"
+    description = "security group for WEB"
     vpc_id = aws_vpc.main_vpc.id
 
     ingress {
@@ -45,7 +45,7 @@ resource "aws_security_group" "web_sg" {
 
 resource "aws_security_group" "was_sg" {
     name = "was_sg"
-    description = "security group for web server"
+    description = "security group for WAS"
     vpc_id = aws_vpc.main_vpc.id
 
     ingress {
