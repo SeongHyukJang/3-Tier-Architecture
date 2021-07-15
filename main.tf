@@ -102,23 +102,12 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_eip" "nat_ip_a" {
   vpc = true
 }
-resource "aws_nat_gateway" "nat_a" {
+resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat_ip_a.id
   connectivity_type = "public"
   subnet_id = aws_subnet.public_subnet_a.id
   tags = {
-    Name = "70491_nat_a"
-  }
-}
-resource "aws_eip" "nat_ip_c" {
-  vpc = true
-}
-resource "aws_nat_gateway" "nat_c" {
-  allocation_id = aws_eip.nat_ip_c.id
-  connectivity_type = "public"
-  subnet_id = aws_subnet.public_subnet_c.id
-  tags = {
-    Name = "70491_nat_c"
+    Name = "70491_nat"
   }
 }
 #############################################
@@ -130,12 +119,18 @@ resource "aws_route_table" "external_rt" {
     Name = "70491_external_rt"
   }
 }
-
-resource "aws_route_table" "internal_rt" {
+resource "aws_route_table" "internal_rt_ap" {
   vpc_id = aws_vpc.main_vpc.id
 
   tags = {
-    Name = "70491_internal_rt"
+    Name = "70491_internal_rt_ap"
+  } 
+}
+resource "aws_route_table" "internal_rt_db" {
+  vpc_id = aws_vpc.main_vpc.id
+
+  tags = {
+    Name = "70491_internal_rt_db"
   } 
 }
 #############################################
@@ -145,15 +140,15 @@ resource "aws_route" "ext_route" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id = aws_internet_gateway.igw.id
 }
-resource "aws_route" "int_route_nat_a" {
-  route_table_id = aws_route_table.internal_rt.id
+resource "aws_route" "int_route_nat_ap" {
+  route_table_id = aws_route_table.internal_rt_ap.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id = aws_nat_gateway.nat_a.id
+  nat_gateway_id = aws_nat_gateway.nat.id
 }
-resource "aws_route" "int_route_nat_c" {
-  route_table_id = aws_route_table.internal_rt.id
+resource "aws_route" "int_route_nat_db" {
+  route_table_id = aws_route_table.internal_rt_db.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id = aws_nat_gateway.nat_c.id
+  nat_gateway_id = aws_nat_gateway.nat.id
 }
 #############################################
 ########### Route Table Association #########
@@ -167,18 +162,18 @@ resource "aws_route_table_association" "ext_rt_subnet_c" {
 }
 resource "aws_route_table_association" "int_rt_subnet_ap_a" {
   subnet_id = aws_subnet.ap_private_subnet_a.id
-  route_table_id = aws_route_table.internal_rt.id
+  route_table_id = aws_route_table.internal_rt_ap.id
 }
 resource "aws_route_table_association" "int_rt_subnet_ap_c" {
   subnet_id = aws_subnet.ap_private_subnet_c.id
-  route_table_id = aws_route_table.internal_rt.id
+  route_table_id = aws_route_table.internal_rt_ap.id
 }
 resource "aws_route_table_association" "int_rt_subnet_db_a" {
   subnet_id = aws_subnet.db_private_subnet_a.id
-  route_table_id = aws_route_table.internal_rt.id
+  route_table_id = aws_route_table.internal_rt_db.id
 }
 resource "aws_route_table_association" "int_rt_subnet_db_c" {
   subnet_id = aws_subnet.db_private_subnet_c.id
-  route_table_id = aws_route_table.internal_rt.id
+  route_table_id = aws_route_table.internal_rt_db.id
 }
 #############################################
