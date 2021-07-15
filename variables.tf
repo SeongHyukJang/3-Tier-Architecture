@@ -49,18 +49,10 @@ variable "db_private_subnet_c" {
     default = "10.0.6.0/24"
 }
 
-variable "key_pair_ec2_web_a" {
-    default = "70491_ec2_web_a"
+variable "key_pair_ec2_web" {
+    default = "70491_ec2_web"
 }
 
-variable "key_pair_ec2_web_c" {
-    default = "70491_ec2_web_c"
-}
-
-variable "key_pair_ec2_was_a" {
-    default = "70491_ec2_was_a"
-}
-
-variable "key_pair_ec2_was_c" {
-    default = "70491_ec2_was_c"
+variable "key_pair_ec2_was" {
+    default = "70491_ec2_was"
 }

@@ -5,7 +5,7 @@ resource "aws_instance" "ec2_web" {
     subnet_id = aws_subnet.ap_private_subnet_a.id 
     availability_zone = var.az_a
     security_groups = [aws_security_group.web_sg.id]
-    key_name = var.key_pair_ec2_web_a
+    key_name = var.key_pair_ec2_web
 
     root_block_device {
         delete_on_termination = true
@@ -24,7 +24,7 @@ resource "aws_instance" "ec2_was"{
     subnet_id = aws_subnet.ap_private_subnet_a.id 
     availability_zone = var.az_a
     security_groups = [aws_security_group.was_sg.id]
-    key_name = var.key_pair_ec2_was_a
+    key_name = var.key_pair_ec2_was
 
     root_block_device {
         delete_on_termination = true
