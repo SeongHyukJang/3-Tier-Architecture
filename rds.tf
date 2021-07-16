@@ -4,7 +4,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
     description = "subnet group for DB"
 }
 
-resource "aws_db_instance" "db" {
+resource "aws_db_instance" "db_master" {
     instance_class = "db.t3.micro"          
     storage_type = "gp2"                    
     allocated_storage = 20                  
@@ -13,13 +13,13 @@ resource "aws_db_instance" "db" {
     engine = "mysql"
     engine_version = "8.0.23"               
 
-    identifier = "db"                 
+    identifier = "db-master"                 
     name = "db"
     username = "admin"
     password = "skcc70491"                  
 
-    port = 3306                             
-    multi_az = true                         
+    port = 3306 
+    availability_zone = var.az_a            
     publicly_accessible = false             
     allow_major_version_upgrade = true
     auto_minor_version_upgrade = true
@@ -27,4 +27,11 @@ resource "aws_db_instance" "db" {
     copy_tags_to_snapshot = true            
     db_subnet_group_name = aws_db_subnet_group.db_subnet_group.id
     vpc_security_group_ids = [aws_security_group.db_sg.id]
+}
+
+resource "aws_db_instance" "db_slave" {
+    instance_class = "db.t3.micro"
+    replicate_source_db = aws_db_instance.db_master.id
+
+    identifier = "db-slave"
 }
