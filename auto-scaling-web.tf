@@ -13,12 +13,6 @@ resource "aws_lb_target_group" "ec2_web_target_group" {
     vpc_id = aws_vpc.main_vpc.id
 }
 
-resource "aws_lb_target_group_attachment" "ec2_web_target_group_attach" {
-    target_group_arn = aws_lb_target_group.ec2_web_target_group.arn
-    target_id = aws_instance.ec2_web.id
-    port = 80
-}
-
 resource "aws_launch_template" "ec2_web_template" {
     name = "70491_ec2_web_template"
     description = "Web server template"
