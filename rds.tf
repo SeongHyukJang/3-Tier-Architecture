@@ -1,10 +1,7 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
-    name = "db-subnet-group"
+    name = "db-subnet-group-70491"
     subnet_ids = [aws_subnet.db_private_subnet_a.id, aws_subnet.db_private_subnet_c.id]
-
-    tags = {
-        Name = "70491_db_subnet_group"
-    }
+    description = "subnet group for DB"
 }
 
 resource "aws_db_instance" "db" {
@@ -17,8 +14,8 @@ resource "aws_db_instance" "db" {
     engine_version = "8.0.23"               
 
     identifier = "db"                 
-    name = "70491_db"
-    username = "admin"                      
+    name = "db"
+    username = "admin"
     password = "skcc70491"                  
 
     port = 3306                             
