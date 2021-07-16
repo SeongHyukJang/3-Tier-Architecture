@@ -1,3 +1,12 @@
+resource "aws_db_subnet_group" "db_subnet_group" {
+    name = "70491-db_subnet_group"
+    subnet_ids = [aws_subnet.db_private_subnet_a.id, aws_subnet.db_private_subnet_c.id]
+
+    tags = {
+        Name = "70491_db_subnet_group"
+    }
+}
+
 resource "aws_db_instance" "db" {
     instance_class = "db.t3.micro"          
     storage_type = "gp2"                    
@@ -20,18 +29,6 @@ resource "aws_db_instance" "db" {
     auto_minor_version_upgrade = true
     backup_retention_period = 14            
     copy_tags_to_snapshot = true            
-    db_subnet_group_name = var.db_private_subnet_a
+    db_subnet_group_name = aws_db_subnet_group.db_subnet_group.name
     vpc_security_group_ids = [aws_security_group.db_sg.id]
-
-
-    # 표준 생성
-    
-    # template : develoment/test
-    # Connection    > VPC > main_vpc
-    #               > Subnet Group > new subnet group?
-    #               > vpc Security Group > make new SG (db_sg)
-    # DB Authentication > Password Authentication
-    # More Configuration    > DB Option > ?
-    #                       > Backup > Allow
-    #                       > Backup Time > default
 }
