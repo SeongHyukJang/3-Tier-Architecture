@@ -20,7 +20,6 @@ resource "aws_db_instance" "db" {
 
     port = 3306                             
     multi_az = true                         
-    availability_zone = var.az_a            
     publicly_accessible = false             
     allow_major_version_upgrade = true
     auto_minor_version_upgrade = true
