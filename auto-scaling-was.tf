@@ -19,6 +19,10 @@ resource "aws_launch_template" "ec2_was_template" {
     instance_type = "t2.micro"
     key_name = "70491_ec2_was"
     vpc_security_group_ids = [aws_security_group.was_sg.id]
+
+    tags = {
+        Name = "70491_ec2_was"
+    }
 }
 
 resource "aws_autoscaling_group" "was_autoscaling_group" {
