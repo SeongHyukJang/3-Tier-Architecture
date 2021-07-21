@@ -12,19 +12,6 @@ resource "aws_lb_target_group" "ec2_was_target_group" {
     vpc_id = aws_vpc.main_vpc.id
 }
 
-resource "aws_launch_template" "ec2_was_template" {
-    name = "70491_ec2_was_template"
-    description = "WAS server template"
-    image_id = "ami-0b827f3319f7447c6"
-    instance_type = "t2.micro"
-    key_name = "70491_ec2_was"
-    vpc_security_group_ids = [aws_security_group.was_sg.id]
-
-    tags = {
-        Name = "70491_ec2_was"
-    }
-}
-
 resource "aws_autoscaling_group" "was_autoscaling_group" {
     name = "70491_was_autoscaling_group"
     min_size = 1
@@ -37,4 +24,8 @@ resource "aws_autoscaling_group" "was_autoscaling_group" {
         version = "$Latest"
     }
     vpc_zone_identifier = [aws_subnet.ap_private_subnet_a.id, aws_subnet.ap_private_subnet_c.id]
+
+    tags = {
+        Name = "WAS Instance"
+    }
 }
