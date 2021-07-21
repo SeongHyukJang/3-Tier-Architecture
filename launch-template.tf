@@ -6,6 +6,10 @@ resource "aws_launch_template" "ec2_web_template" {
     key_name = "70491_ec2_web"
     vpc_security_group_ids = [aws_security_group.web_sg.id]
 
+    iam_instance_profile {
+      name = aws_iam_instance_profile.ec2_iam_profile.name
+    }
+
     tags = {
         Name = "70491_ec2_web"
     }
