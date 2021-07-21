@@ -26,8 +26,10 @@ resource "aws_autoscaling_group" "web_autoscaling_group" {
     }
     vpc_zone_identifier = [aws_subnet.ap_private_subnet_a.id, aws_subnet.ap_private_subnet_c.id]
 
-    tags = {
-        Name = "WEB Instacne"
+    tag {
+        key = "Name"
+        value = "70491_WEB"
+        propagate_at_launch = true
     }
 }
 

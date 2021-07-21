@@ -25,7 +25,9 @@ resource "aws_autoscaling_group" "was_autoscaling_group" {
     }
     vpc_zone_identifier = [aws_subnet.ap_private_subnet_a.id, aws_subnet.ap_private_subnet_c.id]
 
-    tags = {
-        Name = "WAS Instance"
+    tag {
+        key = "Name"
+        value = "70491_WAS"
+        propagate_at_launch = true
     }
 }
