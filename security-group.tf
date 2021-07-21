@@ -119,8 +119,8 @@ resource "aws_security_group" "was_sg" {
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_blocks = [ var.ap_private_subnet_a, var.ap_private_subnet_c, 
-                        var.db_private_subnet_a, var.db_private_subnet_c]
+        cidr_blocks = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
     }
 
     egress {
