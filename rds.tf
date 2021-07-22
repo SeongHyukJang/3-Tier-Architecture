@@ -19,7 +19,7 @@ resource "aws_db_instance" "db_master" {
     password = "skcc70491"                  
 
     port = 3306 
-    availability_zone = var.az_a            
+    multi_az = true
     publicly_accessible = false             
     allow_major_version_upgrade = true
     auto_minor_version_upgrade = true
@@ -27,11 +27,4 @@ resource "aws_db_instance" "db_master" {
     copy_tags_to_snapshot = true            
     db_subnet_group_name = aws_db_subnet_group.db_subnet_group.id
     vpc_security_group_ids = [aws_security_group.db_sg.id]
-}
-
-resource "aws_db_instance" "db_slave" {
-    instance_class = "db.t3.micro"
-    replicate_source_db = aws_db_instance.db_master.id
-
-    identifier = "db-slave"
 }
