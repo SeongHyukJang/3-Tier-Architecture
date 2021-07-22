@@ -18,10 +18,12 @@ resource "aws_launch_template" "ec2_web_template" {
 resource "aws_launch_template" "ec2_was_template" {
     name = "70491_ec2_was_template"
     description = "WAS server template"
-    image_id = "ami-0b827f3319f7447c6"
+    image_id = "ami-06b25c513a2f9a5d6"
     instance_type = "t2.micro"
     key_name = "70491_ec2_was"
     vpc_security_group_ids = [aws_security_group.was_sg.id]
+
+    user_data = filebase64("/home/ec2-user/server/server")
 
     iam_instance_profile {
       name = aws_iam_instance_profile.ec2_iam_profile.name
