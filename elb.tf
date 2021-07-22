@@ -13,6 +13,19 @@ resource "aws_lb_target_group" "ec2_web_target_group" {
     protocol = "HTTP"
     vpc_id = aws_vpc.main_vpc.id
 }
+
+resource "aws_lb_listener" "web_alb_listener" {
+    load_balancer_arn = aws_lb.web_elb.arn
+    port = "80"
+    protocol = "HTTP"
+
+    default_action {
+      type = "forward"
+      target_group_arn = aws_lb_target_group.ec2_web_target_group.arn
+    }
+  
+}
+
 #######################################################################
 ############################# WAS NLB #################################
 resource "aws_lb" "was_elb" {
@@ -25,7 +38,20 @@ resource "aws_lb" "was_elb" {
 resource "aws_lb_target_group" "ec2_was_target_group" {
     name = "70491-ec2-was-target-group"
     port = 80
-    protocol = "HTTP"
+    protocol = "TCP"
     vpc_id = aws_vpc.main_vpc.id
 }
+
+resource "aws_lb_listener" "was_alb_listener" {
+    load_balancer_arn = aws_lb.was_elb.arn
+    port = "80"
+    protocol = "TCP"
+
+    default_action {
+        type = "forward"
+        target_group_arn = aws_lb_target_group.ec2_was_target_group.arn
+    }
+  
+}
+
 #######################################################################
