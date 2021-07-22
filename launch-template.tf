@@ -23,7 +23,7 @@ resource "aws_launch_template" "ec2_was_template" {
     key_name = "70491_ec2_was"
     vpc_security_group_ids = [aws_security_group.was_sg.id]
 
-    user_data = "${file("run_was.sh")}"
+    user_data = filebase64("./run_was.sh")
 
     iam_instance_profile {
       name = aws_iam_instance_profile.ec2_iam_profile.name
