@@ -20,7 +20,7 @@ resource "aws_db_instance" "db_master" {
 
     port = 3306 
     multi_az = true
-    publicly_accessible = false             
+    publicly_accessible = true          # for test
     allow_major_version_upgrade = true
     auto_minor_version_upgrade = true
     backup_retention_period = 14            
