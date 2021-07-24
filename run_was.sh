@@ -1,2 +1,2 @@
 #! /bin/bash
-/home/ec2-user/server/server
+sudo python3 /main.py
