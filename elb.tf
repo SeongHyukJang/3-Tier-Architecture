@@ -16,8 +16,8 @@ resource "aws_lb_target_group" "ec2_web_target_group" {
 
 resource "aws_lb_listener" "web_alb_listener" {
     load_balancer_arn = aws_lb.web_elb.arn
-    port = "80"
-    protocol = "HTTP"
+    port = "4000"
+    protocol = "WEB SERVER"
 
     default_action {
       type = "forward"
