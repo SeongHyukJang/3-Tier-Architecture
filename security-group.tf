@@ -21,6 +21,15 @@ resource "aws_security_group" "alb_sg" {
         ipv6_cidr_blocks = ["::/0"]
     }
 
+    ingress {
+        description = "WEB SERVER"
+        from_port = 4000
+        to_port = 4000
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+
     egress {
         from_port = 0
         to_port = 0
@@ -59,6 +68,15 @@ resource "aws_security_group" "web_sg" {
                         var.ap_private_subnet_a, var.ap_private_subnet_c]
     }
 
+    ingress {
+        description = "wEB SERVER"
+        from_port = 4000
+        to_port = 4000
+        protocol = "tcp"
+        cidr_blocks = [ var.public_subnet_a, var.public_subnet_c, 
+                        var.ap_private_subnet_a, var.ap_private_subnet_c]
+    }
+
     egress {
         from_port = 0
         to_port = 0
@@ -78,15 +96,6 @@ resource "aws_security_group" "was_sg" {
     vpc_id = aws_vpc.main_vpc.id
 
     ingress {
-        description = "HTTPS"
-        from_port = 443
-        to_port = 443
-        protocol = "tcp"
-        cidr_blocks = [ var.ap_private_subnet_a, var.ap_private_subnet_c, 
-                        var.db_private_subnet_a, var.db_private_subnet_c]
-    }
-
-    ingress {
         description = "HTTP"
         from_port = 80
         to_port = 80
@@ -95,6 +104,14 @@ resource "aws_security_group" "was_sg" {
                         var.db_private_subnet_a, var.db_private_subnet_c]
     }
 
+    ingress {
+        description = "HTTPS"
+        from_port = 443
+        to_port = 443
+        protocol = "tcp"
+        cidr_blocks = [ var.ap_private_subnet_a, var.ap_private_subnet_c, 
+                        var.db_private_subnet_a, var.db_private_subnet_c]
+    }
 
     ingress {
         description = "MySQL"
