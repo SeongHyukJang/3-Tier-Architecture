@@ -3,7 +3,7 @@ resource "aws_lb" "web_elb" {
     name = "70491-web-elb"
     internal = false
     load_balancer_type = "application"
-    security_groups = [aws_security_group.web_sg.id]
+    security_groups = [aws_security_group.alb_sg.id]
     subnets = [aws_subnet.public_subnet_a.id, aws_subnet.public_subnet_c.id]
 }
 
