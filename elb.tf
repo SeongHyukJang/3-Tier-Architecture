@@ -9,7 +9,7 @@ resource "aws_lb" "web_elb" {
 
 resource "aws_lb_target_group" "ec2_web_target_group" {
     name = "70491-ec2-web-target-group"
-    port = 4000
+    port = 80
     protocol = "HTTP"
     vpc_id = aws_vpc.main_vpc.id
 }
