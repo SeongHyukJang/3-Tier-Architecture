@@ -1,7 +1,7 @@
 resource "aws_launch_template" "ec2_web_template" {
     name = "70491_ec2_web_template"
     description = "Web server template"
-    image_id = "ami-091d14ab769d908f2"
+    image_id = "ami-09d52b708b31ecff9"
     instance_type = "t2.micro"
     key_name = "70491_ec2_web"
     vpc_security_group_ids = [aws_security_group.web_sg.id]
@@ -20,7 +20,7 @@ resource "aws_launch_template" "ec2_web_template" {
 resource "aws_launch_template" "ec2_was_template" {
     name = "70491_ec2_was_template"
     description = "WAS server template"
-    image_id = "ami-03ae1be57586ee875"
+    image_id = "ami-0fe9723ff76850619"
     instance_type = "t2.micro"
     key_name = "70491_ec2_was"
     vpc_security_group_ids = [aws_security_group.was_sg.id]
