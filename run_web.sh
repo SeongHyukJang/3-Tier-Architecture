@@ -1,2 +1,2 @@
 #! /bin/bash
-sudo python3 /web/server.py
+sudo nohup python3 /web/server.py&
