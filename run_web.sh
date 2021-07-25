@@ -1,2 +1,2 @@
 #! /bin/bash
-python3 /web/server.py
+python3 /web/main.py
