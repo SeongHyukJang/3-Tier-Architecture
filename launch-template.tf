@@ -1,7 +1,7 @@
 resource "aws_launch_template" "ec2_web_template" {
     name = "70491_ec2_web_template"
     description = "Web server template"
-    image_id = "ami-0722ddfc9f2878f52"
+    image_id = "ami-091d14ab769d908f2"
     instance_type = "t2.micro"
     key_name = "70491_ec2_web"
     vpc_security_group_ids = [aws_security_group.web_sg.id]
