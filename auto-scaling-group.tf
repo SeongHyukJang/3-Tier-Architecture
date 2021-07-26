@@ -1,9 +1,9 @@
 ##################################### WEB ASG ###################################################
 resource "aws_autoscaling_group" "web_autoscaling_group" {
     name = "70491_web_autoscaling_group"
-    min_size = 1
-    max_size = 2
-    desired_capacity = 1
+    min_size = 2
+    max_size = 4
+    desired_capacity = 2
     target_group_arns = [aws_lb_target_group.ec2_web_target_group.arn]
 
     launch_template {
@@ -22,8 +22,8 @@ resource "aws_autoscaling_group" "web_autoscaling_group" {
 ##################################### WAS ASG ###################################################
 resource "aws_autoscaling_group" "was_autoscaling_group" {
     name = "70491_was_autoscaling_group"
-    min_size = 1
-    max_size = 2
+    min_size = 2
+    max_size = 4
     desired_capacity = 1
     target_group_arns = [aws_lb_target_group.ec2_was_target_group.arn]
 
