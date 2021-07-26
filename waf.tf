@@ -1,23 +1,3 @@
-
-
-/*
-name
-description
-cloudwatch metric name
-
-resource type : regional resources (alb)
-
-region : seoul
-
-
-associated aws resources (optional) -> 70491-web-elb(alb)
-
-rules
-- free rule groups
-    - 
-
-*/
-
 resource "aws_wafv2_web_acl" "WAF_ACL" {
     name = "70491-WAF"
     description = "70491-WAF"
@@ -27,11 +7,11 @@ resource "aws_wafv2_web_acl" "WAF_ACL" {
       allow {}
     }
 
-    visibivisibility_config {
+    visibility_config {
         cloudwatch_metrics_enabled = true
         metric_name = "70491-WAF"
         sampled_requests_enabled = true
-    }   
+    }
 }
 
 resource "aws_wafv2_web_acl_association" "WAF_ACL_association" {
