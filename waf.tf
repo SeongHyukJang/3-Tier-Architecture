@@ -25,6 +25,12 @@ resource "aws_wafv2_web_acl" "WAF_ACL" {
 
     default_action {
       allow {}
+    }
+
+    visibivisibility_config {
+        cloudwatch_metrics_enabled = true
+        metric_name = "70491-WAF"
+        sampled_requests_enabled = true
     }   
 }
 
