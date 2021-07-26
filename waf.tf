@@ -7,10 +7,33 @@ resource "aws_wafv2_web_acl" "WAF_ACL" {
       allow {}
     }
 
+    rule {
+        name = "rule-1"
+        priority = 1
+
+        override_action {
+          count {}
+        }
+
+        statement {
+            managed_rule_group_statement {
+              name = "AWSManagedRulesCommonRuleSet"
+              vendor_name = "AWS"
+            }
+          
+        }
+
+        visibility_config {
+            cloudwatch_metrics_enabled = false
+            metric_name = "70491-rule-1"
+            sampled_requests_enabled = false
+        }
+    }
+
     visibility_config {
-        cloudwatch_metrics_enabled = true
+        cloudwatch_metrics_enabled = false
         metric_name = "70491-WAF"
-        sampled_requests_enabled = true
+        sampled_requests_enabled = false
     }
 }
 
