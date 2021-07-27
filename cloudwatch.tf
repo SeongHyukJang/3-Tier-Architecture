@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_log_group" "log_group_message" {
-    name = "message"
+    name = "messages"
     retention_in_days = 1
 
     tags = {
