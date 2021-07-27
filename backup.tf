@@ -1,6 +1,6 @@
 resource "aws_backup_vault" "backup_vault" {
     name = "70491-backup-vault"
-    kms_key_arn = "arn:aws:kms:ap-northeast-2:533616270150:key/317da4ee-02c0-4a2e-9adc-c83bbdbb8a92"
+    kms_key_arn = "arn:aws:kms:ap-northeast-2:533616270150:key/9a0e4c93-4fba-48b6-aeee-7f6886c890a0"
 }
 
 resource "aws_backup_plan" "backup_plan" {
