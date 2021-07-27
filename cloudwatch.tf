@@ -8,7 +8,7 @@ resource "aws_cloudwatch_log_group" "log_group_message" {
 }
 
 resource "aws_cloudwatch_log_group" "log_group_secure" {
-    name = "message"
+    name = "secure"
     retention_in_days = 1
 
 
