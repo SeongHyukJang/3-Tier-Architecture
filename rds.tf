@@ -26,4 +26,8 @@ resource "aws_db_instance" "db_master" {
     copy_tags_to_snapshot = true            
     db_subnet_group_name = aws_db_subnet_group.db_subnet_group.id
     vpc_security_group_ids = [aws_security_group.db_sg.id]
+
+    tags = {
+        Name = "70491-DB"
+    }
 }
