@@ -26,7 +26,7 @@ resource "aws_backup_selection" "backup_web" {
 
 resource "aws_backup_selection" "backup_was" {
     iam_role_arn = "arn:aws:iam::533616270150:role/service-role/AWSBackupDefaultServiceRole"
-    name = "backup-WEB"
+    name = "backup-WAS"
     plan_id = aws_backup_plan.backup_plan.id
 
     selection_tag {
@@ -34,4 +34,16 @@ resource "aws_backup_selection" "backup_was" {
         key = "Name"
         value = "70491-WAS"
     }
+}
+
+resource "aws_backup_selection" "backup_db" {
+    iam_role_arn = "arn:aws:iam::533616270150:role/service-role/AWSBackupDefaultServiceRole"
+    name = "backup-DB"
+    plan_id = aws_backup_plan.backup_plan.id
+
+    selection_tag {
+        type = "STRINGEQUALS"
+        key = "Name"
+        value = "70491-DB"
+    }   
 }
