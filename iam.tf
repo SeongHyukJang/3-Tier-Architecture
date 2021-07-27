@@ -26,7 +26,7 @@ EOF
 
 resource "aws_iam_role_policy_attachment" "ssm_role_attach" {
     role = aws_iam_role.ec2_role.name
-    policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+    policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
 }
 
 resource "aws_iam_role_policy_attachment" "cloudwatch_role_attach" {
