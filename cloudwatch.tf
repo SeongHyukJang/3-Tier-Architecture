@@ -31,5 +31,14 @@ resource "aws_cloudwatch_event_rule" "cloudwatch_rule_log" {
 
 resource "aws_cloudwatch_event_target" "lambda_target" {
     rule = aws_cloudwatch_event_rule.cloudwatch_rule_log.name
+    target_id = "log_lambda_target"
     arn = aws_lambda_function.log_lambda.arn
+}
+
+resource "aws_lambda_permission" "allow_cloudwatch" {
+    statement_id = "AllowExecutionFromCloudWatch"
+    action = "lambda:InvokeFunction"
+    function_name = aws_lambda_function.log_lambda.function_name
+    principal = "events.amazonaws.com"
+    source_arn = aws_cloudwatch_event_rule.cloudwatch_rule_log.arn
 }
