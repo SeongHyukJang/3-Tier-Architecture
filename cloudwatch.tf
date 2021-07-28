@@ -17,6 +17,15 @@ resource "aws_cloudwatch_log_group" "log_group_secure" {
     }
 }
 
+resource "aws_cloudwatch_log_group" "lambda_log_group" {
+    name = "/aws/lambda/70491-lambda"
+
+    tags = {
+        ExportToS3 = "true"
+    }
+  
+}
+
 resource "aws_cloudwatch_event_rule" "cloudwatch_rule_log" {
     name = "70491-rule"
     description = "put log to s3"
