@@ -9,9 +9,9 @@ resource "aws_lambda_function" "log_lambda" {
 
     source_code_hash = filebase64sha256("lambda_function.zip")
 
-  #   environment {
-  #   variables = {
-  #     S3_BUCKET = "70491-log-bucket"
-  #   }
-  # }
+    environment {
+    variables = {
+      S3_BUCKET = "70491-log-bucket"
+    }
+  }
 }
