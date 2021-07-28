@@ -3,7 +3,7 @@ resource "aws_lambda_function" "log_lambda" {
 
     function_name = "70491-lambda"
     handler = "lambda_function.lambda_handler"
-    role = aws_iam_role.lambda_role.arn
+    role = "arn:aws:iam::533616270150:role/70491_lambda_role"
 
     runtime = "python3.7"
 
