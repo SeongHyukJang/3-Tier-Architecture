@@ -55,6 +55,8 @@ resource "aws_iam_role_policy_attachment" "cloudwatch_role_attach" {
     policy_arn = "arn:aws:iam::aws:policy/CloudWatchFullAccess"
 }
 
+
+
 resource "aws_iam_role_policy_attachment" "s3_role_attach" {
     role = aws_iam_role.lambda_role.name
     policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
@@ -68,4 +70,9 @@ resource "aws_iam_role_policy_attachment" "lambda_role_attach" {
 resource "aws_iam_role_policy_attachment" "log_role_attach" {
     role = aws_iam_role.lambda_role.name
     policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "ssm_role_attach" {
+    role = aws_iam_role.lambda_role.name
+    policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
 }

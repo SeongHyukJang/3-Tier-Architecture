@@ -18,11 +18,7 @@ resource "aws_cloudwatch_log_group" "log_group_secure" {
 }
 
 resource "aws_cloudwatch_log_group" "log_group_lambda" {
-    name = "70491-lambda"
     
-    tags = {
-        Name = "ExportToS3"
-    }
 }
 
 resource "aws_cloudwatch_event_rule" "cloudwatch_rule_log" {
