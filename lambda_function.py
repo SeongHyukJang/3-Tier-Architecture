@@ -25,11 +25,10 @@ def lambda_handler(event, context):
             break
         extra_args['nextToken'] = response['nextToken']
     
+
+    
     for log_group in log_groups:
-        response = logs.list_tags_log_group(logGroupName=log_group['logGroupName'])
-        log_group_tags = response['tags']
-        
-        if 'ExportToS3' in log_group_tags and log_group_tags['ExportToS3'] == 'true':
+        if log_group['logGroupName'] == '/aws/lambda/70491-lambda':
             log_groups_to_export.append(log_group['logGroupName'])
     
     for log_group_name in log_groups_to_export:
