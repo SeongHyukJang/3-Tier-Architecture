@@ -29,7 +29,7 @@ def lambda_handler(event, context):
         response = logs.list_tags_log_group(logGroupName=log_group['logGroupName'])
         log_group_tags = response['tags']
         
-        if '70491-to-S3' in log_group_tags and log_group_tags['70491-to-S3'] == 'true':
+        if 'ExportToS3' in log_group_tags and log_group_tags['ExportToS3'] == 'true':
             log_groups_to_export.append(log_group['logGroupName'])
     
     for log_group_name in log_groups_to_export:

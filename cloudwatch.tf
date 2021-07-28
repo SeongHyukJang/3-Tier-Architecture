@@ -17,13 +17,12 @@ resource "aws_cloudwatch_log_group" "log_group_secure" {
     }
 }
 
-resource "aws_cloudwatch_log_group" "lambda_log_group" {
-    name = "/aws/lambda/70491-lambda"
-
+resource "aws_cloudwatch_log_group" "log_group_lambda" {
+    name = "70491-lambda"
+    
     tags = {
-        ExportToS3 = "true"
+        Name = "ExportToS3"
     }
-  
 }
 
 resource "aws_cloudwatch_event_rule" "cloudwatch_rule_log" {
