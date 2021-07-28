@@ -25,7 +25,7 @@ resource "aws_cloudwatch_event_rule" "cloudwatch_rule_log" {
     name = "70491-rule"
     description = "put log to s3"
 
-    schedule_expression = "rate(1 minute)"
+    schedule_expression = "rate(1 day)"
     is_enabled = true
 
     tags = {
