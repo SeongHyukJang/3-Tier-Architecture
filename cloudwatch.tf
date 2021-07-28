@@ -18,6 +18,7 @@ resource "aws_cloudwatch_log_group" "log_group_secure" {
 }
 
 resource "aws_cloudwatch_log_group" "log_group_lambda" {
+    retention_in_days = 1
     
 }
 
