@@ -22,10 +22,14 @@ resource "aws_cloudwatch_event_rule" "cloudwatch_rule_log" {
     description = "put log to s3"
 
     schedule_expression = "rate(1 minute)"
-    role_arn = "arn:aws:lambda:ap-northeast-2:533616270150:function:70491-lambda"
     is_enabled = true
 
     tags = {
         Name = "70491-rule"
     }
+}
+
+resource "aws_cloudwatch_event_target" "lambda_target" {
+    rule = aws_cloudwatch_event_rule.cloudwatch_rule_log.name
+    arn = aws_lambda_function.log_lambda.arn
 }
