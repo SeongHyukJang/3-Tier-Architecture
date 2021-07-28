@@ -3,7 +3,7 @@ resource "aws_lambda_function" "log_lambda_fuction" {
     function_name = "70491-lambda"
     role = aws_iam_role.lambda_role.arn
 
-    runtime = "Python3.7"
+    runtime = "python3.7"
 
     environment {
       variables = {
