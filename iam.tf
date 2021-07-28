@@ -1,29 +1,29 @@
+data "aws_iam_policy_document" "policy_doc" {
+  statement {
+    actions   = ["s3:ListAllMyBuckets"]
+    resources = ["arn:aws:s3:::*"]
+    effect = "Allow"
+  }
+  statement {
+    actions   = ["s3:*"]
+    resources = [aws_s3_bucket.log_bucket.arn]
+    effect = "Allow"
+  }
+}
+
+
 resource "aws_iam_policy" "policy" {
   name = "70491-log-bucket-policy"
   description = "policy for s3 bucket"
 
-  policy = <<EOT
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "s3:ListAllMyBuckets"
-      ],
-      "Effect": "Allow",
-      "Resource": "*"
-    },
-    {
-      "Action": [
-        "s3:*"
-      ],
-      "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.log_bucket.arn}"
-    }
-
-  ]
+  policy = data.aws_iam_policy_document.policy_doc.json
+  
 }
-EOT
+
+resource "aws_iam_user_policy_attachment" "policy_attach" {
+  user = "skcc70491"
+  policy_arn = aws_iam_policy.policy.arn
+  
 }
 
 resource "aws_iam_instance_profile" "ec2_iam_profile" {
