@@ -20,6 +20,10 @@ resource "aws_iam_policy" "policy" {
   
 }
 
+output "rendered_policy" {
+  value = data.aws_iam_policy_document.policy_doc.json
+}
+
 resource "aws_iam_user_policy_attachment" "policy_attach" {
   user = "skcc70491"
   policy_arn = aws_iam_policy.policy.arn
