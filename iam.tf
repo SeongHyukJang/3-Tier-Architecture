@@ -1,3 +1,31 @@
+resource "aws_iam_policy" "policy" {
+  name = "70491-log-bucket-policy"
+  description = "policy for s3 bucket"
+
+  policy = <<EOT
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "s3:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "${aws_s3_bucket.log_bucket.arn}"
+    }
+
+  ]
+}
+EOT
+}
+
 resource "aws_iam_instance_profile" "ec2_iam_profile" {
     name = "70491_iam_profile"
     role = aws_iam_role.ec2_role.name
