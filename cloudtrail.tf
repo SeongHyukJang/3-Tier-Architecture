@@ -1,6 +1,6 @@
 resource "aws_cloudtrail" "cloudtrail" {
     name = "70491-cloudtrail"
-    s3_bucket_name = aws_s3_bucket.log_bucket.id
+    s3_bucket_name = aws_s3_bucket.cloudtrail_bucket.id
     
     include_global_service_events = false
     is_multi_region_trail = false
