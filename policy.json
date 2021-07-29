@@ -38,7 +38,7 @@
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::70491-log-bucket/cloudtrail/*",
+            "Resource": "arn:aws:s3:::70491-log-bucket/*",
             "Condition": {
                 "StringEquals": {
                     "s3:x-amz-acl": "bucket-owner-full-control"
