@@ -58,7 +58,7 @@ resource "aws_codepipeline" "codepipeline_WEB" {
             input_artifacts = ["BuildArtifact"]
 
             configuration = {
-              "ApplicationName" = "70491-codedeploy-app_WEB"
+              "ApplicationName" = "70491-codedeploy-app-WEB"
               "DeploymentGroupName" = "70491-codedeploy-group"
             }
         }
@@ -129,7 +129,7 @@ resource "aws_codepipeline" "codepipeline_WAS" {
             input_artifacts = ["BuildArtifact"]
 
             configuration = {
-              "ApplicationName" = "70491-codedeploy-app_WAS"
+              "ApplicationName" = "70491-codedeploy-app-WAS"
               "DeploymentGroupName" = "70491-codedeploy-group"
             }
         }
