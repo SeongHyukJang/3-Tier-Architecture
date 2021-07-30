@@ -113,7 +113,7 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
   name = "70491-codepipeline-policy"
   role = aws_iam_role.codepipeline_role.id
 
-  policy = jsoncode({
+  policy = jsonencode({
     "Statement": [
         {
             "Action": [
@@ -357,7 +357,7 @@ resource "aws_iam_role_policy" "codebuild_vpc_role_policy" {
   name = "70491-codebuild-vpc-policy"
   role = aws_iam_role.codebuild_role.id
 
-  policy = jsoncode({
+  policy = jsonencode({
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -397,7 +397,7 @@ resource "aws_iam_role_policy" "codebuild_base_role_policy" {
   name = "70491-codebuild-base-policy"
   role = aws_iam_role.codebuild_role.id
 
-  policy = jsoncode({
+  policy = jsonencode({
     "Version": "2012-10-17",
     "Statement": [
         {
