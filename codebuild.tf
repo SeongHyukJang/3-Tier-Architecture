@@ -3,13 +3,13 @@ resource "aws_codebuild_project" "codebuild_project" {
     description = "70491-codebuild project"
     build_timeout = "5"
     service_role = aws_iam_role.codebuild_role.arn
-    source_version = "master"
+    source_version = "refs/heads/master"
 
     source {
         type = "CODECOMMIT"
         git_clone_depth = 1
 
-        location = "70491-repo-web"
+        location = "https://git-codecommit.ap-northeast-2.amazonaws.com/v1/repos/70491-repo-web"
     }
 
     artifacts {
