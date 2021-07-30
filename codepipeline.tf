@@ -58,7 +58,7 @@ resource "aws_codepipeline" "codepipeline" {
             input_artifacts = ["BuildArtifact"]
 
             configuration = {
-              "ApplicationName" = "70491-deploy"
+              "ApplicationName" = "70491-codedeploy-app"
               "DeploymentGroupName" = "70491-codedeploy-group"
             }
         }
