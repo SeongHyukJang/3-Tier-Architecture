@@ -1,6 +1,6 @@
-resource "aws_codebuild_project" "codebuild_project" {
-    name = "70491-codebuild"
-    description = "70491-codebuild project"
+resource "aws_codebuild_project" "codebuild_project_WEB" {
+    name = "70491-codebuild_WEB"
+    description = "70491-codebuild project WEB"
     build_timeout = "5"
     service_role = aws_iam_role.codebuild_role.arn
     source_version = "refs/heads/master"
@@ -15,7 +15,7 @@ resource "aws_codebuild_project" "codebuild_project" {
     artifacts {
         type = "S3"
         location = "70491-codedeploy-bucket"
-        name = "70491-codebuild"
+        name = "70491-codebuild_WEB"
 
         encryption_disabled = true
 

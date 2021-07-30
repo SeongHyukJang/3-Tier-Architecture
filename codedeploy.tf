@@ -1,10 +1,10 @@
-resource "aws_codedeploy_app" "codedeploy_app" {
+resource "aws_codedeploy_app" "codedeploy_app_WEB" {
     name = "70491-codedeploy-app"
     compute_platform = "Server" 
 }
 
-resource "aws_codedeploy_deployment_group" "codedeploy_group" {
-    app_name = aws_codedeploy_app.codedeploy_app.name
+resource "aws_codedeploy_deployment_group" "codedeploy_group_WEB" {
+    app_name = aws_codedeploy_app.codedeploy_app_WEB.name
     deployment_group_name = "70491-codedeploy-group"
     deployment_config_name = "CodeDeployDefault.AllAtOnce"
     service_role_arn = aws_iam_role.codedeploy_role.arn

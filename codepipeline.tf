@@ -1,5 +1,5 @@
-resource "aws_codepipeline" "codepipeline" {
-    name = "70491-codepipeline"
+resource "aws_codepipeline" "codepipeline_WEB" {
+    name = "70491-codepipeline_WEB"
     role_arn = aws_iam_role.codepipeline_role.arn
 
     artifact_store {
@@ -40,7 +40,7 @@ resource "aws_codepipeline" "codepipeline" {
             output_artifacts = ["BuildArtifact"]
 
             configuration = {
-              "ProjectName" = "70491-codebuild"
+              "ProjectName" = "70491-codebuild_WEB"
             }
         }
     }
@@ -58,7 +58,7 @@ resource "aws_codepipeline" "codepipeline" {
             input_artifacts = ["BuildArtifact"]
 
             configuration = {
-              "ApplicationName" = "70491-codedeploy-app"
+              "ApplicationName" = "70491-codedeploy-app_WEB"
               "DeploymentGroupName" = "70491-codedeploy-group"
             }
         }
