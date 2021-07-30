@@ -40,7 +40,7 @@ resource "aws_codepipeline" "codepipeline" {
             output_artifacts = ["BuildArtifact"]
 
             configuration = {
-              "ProjectName" = "70491-codebuld"
+              "ProjectName" = "70491-codebuild"
             }
         }
     }
@@ -54,7 +54,7 @@ resource "aws_codepipeline" "codepipeline" {
             owner = "AWS"
             provider = "CodeDeploy"
             version = "1"
-            
+
             input_artifacts = ["BuildArtifact"]
 
             configuration = {
