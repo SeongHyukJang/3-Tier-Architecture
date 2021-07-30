@@ -45,6 +45,30 @@ resource "aws_iam_role" "lambda_role" {
 EOF
 }
 
+resource "aws_iam_role" "codedeploy_role" {
+  name = "70491_codedeploy_role"
+  description = "role for codedeploy"
+
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": [
+                    "codedeploy.amazonaws.com"
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+EOF
+}
+
+
 resource "aws_iam_role_policy_attachment" "ssm_role_attach" {
     role = aws_iam_role.ec2_role.name
     policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
@@ -70,4 +94,10 @@ resource "aws_iam_role_policy_attachment" "lambda_log_role_attach" {
 resource "aws_iam_role_policy_attachment" "lambda_ssm_role_attach" {
     role = aws_iam_role.lambda_role.name
     policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
+}
+
+
+resource "aws_iam_role_policy_attachment" "codedeploy_role_attach" {
+    role = aws_iam_role.codedeploy_role.name
+    policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
 }
