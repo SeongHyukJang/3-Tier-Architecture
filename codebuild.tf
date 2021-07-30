@@ -8,7 +8,7 @@ resource "aws_codebuild_project" "codebuild_project" {
         type = "CODECOMMIT"
         git_clone_depth = 1
 
-        location = "codecommit::ap-northeast-2://70491-repo-web"
+        location = "70491-repo-web"
     }
 
     artifacts {
