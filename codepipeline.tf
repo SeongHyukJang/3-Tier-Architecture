@@ -59,7 +59,7 @@ resource "aws_codepipeline" "codepipeline_WEB" {
 
             configuration = {
               "ApplicationName" = "70491-codedeploy-app-WEB"
-              "DeploymentGroupName" = "70491-codedeploy-group"
+              "DeploymentGroupName" = "70491-codedeploy-group_WEB"
             }
         }
     }
@@ -130,7 +130,7 @@ resource "aws_codepipeline" "codepipeline_WAS" {
 
             configuration = {
               "ApplicationName" = "70491-codedeploy-app-WAS"
-              "DeploymentGroupName" = "70491-codedeploy-group"
+              "DeploymentGroupName" = "70491-codedeploy-group_WAS"
             }
         }
     }
