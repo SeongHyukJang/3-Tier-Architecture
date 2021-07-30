@@ -353,6 +353,11 @@ resource "aws_iam_role_policy_attachment" "codebuild_s3_role_attach" {
     policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
 
+resource "aws_iam_role_policy_attachment" "codebuild_cloudwatch_role_attach" {
+    role = aws_iam_role.codebuild_role.name
+    policy_arn = "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+}
+
 resource "aws_iam_role_policy" "codebuild_vpc_role_policy" {
   name = "70491-codebuild-vpc-policy"
   role = aws_iam_role.codebuild_role.id
