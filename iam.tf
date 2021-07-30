@@ -433,7 +433,8 @@ resource "aws_iam_role_policy" "codebuild_base_role_policy" {
         {
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:codecommit:ap-northeast-2:533616270150:70491-repo-web"
+                "arn:aws:codecommit:ap-northeast-2:533616270150:70491-repo-web",
+                "arn:aws:codecommit:ap-northeast-2:533616270150:70491-repo-was"                
             ],
             "Action": [
                 "codecommit:GitPull"
