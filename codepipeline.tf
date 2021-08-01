@@ -70,7 +70,9 @@ resource "aws_codepipeline" "codepipeline_WEB" {
         action {
             name = "Approval"
             category = "Approval"
-            owner = "Custom"
+            provider = "Manual"
+            owner = "AWS"
+            version = "1"
         }
 
     }
@@ -173,9 +175,10 @@ resource "aws_codepipeline" "codepipeline_WAS" {
         action {
             name = "Approval"
             category = "Approval"
-            owner = "Custom"
+            provider = "Manual"
+            owner = "AWS"
+            version = "1"
         }
-
     }
 
     stage {
