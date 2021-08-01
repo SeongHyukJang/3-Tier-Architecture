@@ -33,16 +33,11 @@ resource "aws_codebuild_project" "codebuild_project_WEB" {
     
 
     vpc_config {
-        vpc_id = aws_vpc.main_vpc.id
+        vpc_id = aws_vpc.main_vpc_dev.id
 
-        subnets = [
-            aws_subnet.ap_private_subnet_a.id,
-            aws_subnet.ap_private_subnet_c.id
-        ]
+        subnets = [aws_subnet.ap_private_subnet_a_dev.id]
 
-        security_group_ids = [
-            aws_security_group.web_sg.id
-        ]
+        security_group_ids = [aws_security_group.web_sg_dev.id]
     }
 }
 
@@ -81,15 +76,10 @@ resource "aws_codebuild_project" "codebuild_project_WAS" {
     }
 
     vpc_config {
-        vpc_id = aws_vpc.main_vpc.id
+        vpc_id = aws_vpc.main_vpc_dev.id
 
-        subnets = [
-            aws_subnet.ap_private_subnet_a.id,
-            aws_subnet.ap_private_subnet_c.id
-        ]
+        subnets = [aws_subnet.ap_private_subnet_a_dev.id]
 
-        security_group_ids = [
-            aws_security_group.was_sg.id
-        ]
+        security_group_ids = [aws_security_group.was_sg_dev.id]
     }
 }

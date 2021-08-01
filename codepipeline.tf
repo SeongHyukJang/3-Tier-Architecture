@@ -46,7 +46,7 @@ resource "aws_codepipeline" "codepipeline_WEB" {
     }
 
     stage {
-        name = "Deploy"
+        name = "DEV_Deploy"
 
         action {
             name = "Deploy"
@@ -59,11 +59,43 @@ resource "aws_codepipeline" "codepipeline_WEB" {
 
             configuration = {
               "ApplicationName" = "70491-codedeploy-app-WEB"
-              "DeploymentGroupName" = "70491-codedeploy-group_WEB"
+              "DeploymentGroupName" = "70491-codedeploy-group_WEB_dev"
+            }
+        }
+    }
+
+    stage {
+        name = "Approval"
+
+        action {
+            name = "Approval"
+            category = "Approval"
+            owner = "Custom"
+        }
+
+    }
+
+    stage {
+        name = "PROD_Deploy"
+
+        action {
+            name = "Deploy"
+            category = "Deploy"
+            owner = "AWS"
+            provider = "CodeDeploy"
+            version = "1"
+
+            input_artifacts = ["BuildArtifact"]
+
+            configuration = {
+              "ApplicationName" = "70491-codedeploy-app-WEB"
+              "DeploymentGroupName" = "70491-codedeploy-group_WEB_prod"
             }
         }
     }
 }
+
+
 
 #############################################################
 
@@ -117,7 +149,7 @@ resource "aws_codepipeline" "codepipeline_WAS" {
     }
 
     stage {
-        name = "Deploy"
+        name = "DEV_Deploy"
 
         action {
             name = "Deploy"
@@ -130,8 +162,39 @@ resource "aws_codepipeline" "codepipeline_WAS" {
 
             configuration = {
               "ApplicationName" = "70491-codedeploy-app-WAS"
-              "DeploymentGroupName" = "70491-codedeploy-group_WAS"
+              "DeploymentGroupName" = "70491-codedeploy-group_WAS_dev"
             }
         }
     }
+
+    stage {
+        name = "Approval"
+
+        action {
+            name = "Approval"
+            category = "Approval"
+            owner = "Custom"
+        }
+
+    }
+
+    stage {
+        name = "PROD_Deploy"
+
+        action {
+            name = "Deploy"
+            category = "Deploy"
+            owner = "AWS"
+            provider = "CodeDeploy"
+            version = "1"
+
+            input_artifacts = ["BuildArtifact"]
+
+            configuration = {
+              "ApplicationName" = "70491-codedeploy-app-WAS"
+              "DeploymentGroupName" = "70491-codedeploy-group_WAS_prod"
+            }
+        }
+    }
+
 }
