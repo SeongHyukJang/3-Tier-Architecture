@@ -1,5 +1,5 @@
 resource "aws_launch_template" "ec2_web_template_dev" {
-    name = "70491_ec2_web_template"
+    name = "70491_ec2_web_template_dev"
     description = "Web server template"
     image_id = "ami-0d4dce82a42c7a357"
     instance_type = "t2.micro"
@@ -18,7 +18,7 @@ resource "aws_launch_template" "ec2_web_template_dev" {
 }
 
 resource "aws_launch_template" "ec2_was_template_dev" {
-    name = "70491_ec2_was_template"
+    name = "70491_ec2_was_template_dev"
     description = "WAS server template"
     image_id = "ami-0eeb303b809b2f5f4"
     instance_type = "t2.micro"

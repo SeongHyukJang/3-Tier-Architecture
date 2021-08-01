@@ -13,7 +13,7 @@ resource "aws_db_instance" "db_master_prod" {
     engine = "mysql"
     engine_version = "8.0.23"               
 
-    identifier = "db-master"                 
+    identifier = "db-master-prod"                 
     name = "db"
     username = "admin"
     password = "skcc70491"                  
