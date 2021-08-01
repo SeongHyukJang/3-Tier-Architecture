@@ -60,14 +60,29 @@ variable "public_subnet_a_dev" {
     default = "10.1.1.0/24"
 }
 
+variable "public_subnet_c_dev" {
+    description = "public subnet"
+    default = "10.1.2.0/24"
+}
+
 variable "ap_private_subnet_a_dev" {
     description = "ap private subnet"
-    default = "10.1.2.0/24"
+    default = "10.1.3.0/24"
+}
+
+variable "ap_private_subnet_c_dev" {
+    description = "ap private subnet"
+    default = "10.1.4.0/24"
 }
 
 variable "db_private_subnet_a_dev" {
     description = "db private subnet"
-    default = "10.1.3.0/24"
+    default = "10.1.5.0/24"
+}
+
+variable "db_private_subnet_c_dev" {
+    description = "db private subnet"
+    default = "10.1.6.0/24"
 }
 
 variable "key_pair_ec2_web" {

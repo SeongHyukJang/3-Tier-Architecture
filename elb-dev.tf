@@ -4,7 +4,7 @@ resource "aws_lb" "web_elb_dev" {
     internal = false
     load_balancer_type = "application"
     security_groups = [aws_security_group.alb_sg_dev.id]
-    subnets = [aws_subnet.public_subnet_a_dev.id]
+    subnets = [aws_subnet.public_subnet_a_dev.id, aws_subnet.public_subnet_c_dev.id]
 }
 
 resource "aws_lb_target_group" "ec2_web_target_group_dev" {

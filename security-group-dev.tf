@@ -46,7 +46,8 @@ resource "aws_security_group" "web_sg_dev" {
         from_port = 443
         to_port = 443
         protocol = "tcp"
-        cidr_blocks = [ var.public_subnet_a_dev, var.ap_private_subnet_a_dev]
+        cidr_blocks = [ var.public_subnet_a_dev,        var.public_subnet_c_dev,
+                        var.ap_private_subnet_a_dev,    var.ap_private_subnet_c_dev]
     }
 
     ingress {
@@ -54,7 +55,8 @@ resource "aws_security_group" "web_sg_dev" {
         from_port = 80
         to_port = 80
         protocol = "tcp"
-        cidr_blocks = [ var.public_subnet_a_dev, var.ap_private_subnet_a_dev]
+        cidr_blocks = [ var.public_subnet_a_dev,        var.public_subnet_c_dev,
+                        var.ap_private_subnet_a_dev,    var.ap_private_subnet_c_dev]
     }
 
     egress {
@@ -80,7 +82,8 @@ resource "aws_security_group" "was_sg_dev" {
         from_port = 80
         to_port = 80
         protocol = "tcp"
-        cidr_blocks = [ var.ap_private_subnet_a_dev, var.db_private_subnet_a_dev]
+        cidr_blocks = [ var.ap_private_subnet_a_dev, var.db_private_subnet_c_dev,
+                        var.db_private_subnet_a_dev, var.db_private_subnet_c_dev]
     }
 
     ingress {
@@ -88,7 +91,8 @@ resource "aws_security_group" "was_sg_dev" {
         from_port = 443
         to_port = 443
         protocol = "tcp"
-        cidr_blocks = [ var.ap_private_subnet_a_dev, var.db_private_subnet_a_dev]
+        cidr_blocks = [ var.ap_private_subnet_a_dev, var.db_private_subnet_c_dev,
+                        var.db_private_subnet_a_dev, var.db_private_subnet_c_dev]
     }
 
     ingress {
@@ -96,7 +100,8 @@ resource "aws_security_group" "was_sg_dev" {
         from_port = 3306
         to_port = 3306
         protocol = "tcp"
-        cidr_blocks = [ var.ap_private_subnet_a_dev, var.db_private_subnet_a_dev]
+        cidr_blocks = [ var.ap_private_subnet_a_dev, var.ap_private_subnet_c_dev,
+                        var.db_private_subnet_a_dev, var.ap_private_subnet_c_dev]
     }
 
     egress {
@@ -122,7 +127,7 @@ resource "aws_security_group" "db_sg_dev" {
         from_port = 3306
         to_port = 3306
         protocol = "tcp"
-        cidr_blocks = [var.ap_private_subnet_a_dev]
+        cidr_blocks = [var.ap_private_subnet_a_dev, var.ap_private_subnet_c_dev]
     }
 
     ingress {
@@ -130,7 +135,7 @@ resource "aws_security_group" "db_sg_dev" {
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_blocks = [var.ap_private_subnet_a_dev]
+        cidr_blocks = [var.ap_private_subnet_a_dev, var.ap_private_subnet_c_dev]
     }
 
     egress {
