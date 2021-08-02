@@ -468,3 +468,34 @@ resource "aws_iam_role_policy" "codebuild_base_role_policy" {
     ]
 }) 
 }
+
+####################### EKS role #############################
+resource "aws_iam_role" "eks_role" {
+    name = "70491_eks_role"
+    description = "role for eks"
+
+    assume_role_policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "eks.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_iam_role_policy_attachment" "eks_eks_role_attach" {
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+    role = aws_iam_role.eks_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "eks_SG_Pods_role_attach" {
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
+    role       = aws_iam_role.eks_role.name
+}
