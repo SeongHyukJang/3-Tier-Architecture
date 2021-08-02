@@ -499,3 +499,36 @@ resource "aws_iam_role_policy_attachment" "eks_SG_Pods_role_attach" {
     policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
     role       = aws_iam_role.eks_role.name
 }
+
+
+####################### EKS node role #############################
+resource "aws_iam_role" "node_role" {
+    name = "70491_node_role"
+    description = "role for node in EKS"
+
+    assume_role_policy = jsonencode({
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      }
+    }]
+    Version = "2012-10-17"
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "node_node_role_attach" {
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+    role = aws_iam_role.node_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "node_CNI_role_attach" {
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+    role = aws_iam_role.node_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "node_container_role_attach" {
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+    role = aws_iam_role.node_role.name
+}
