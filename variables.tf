@@ -13,76 +13,40 @@ variable "az_c" {
   default = "ap-northeast-2c"
 }
 
-########################## PROD #########################
-variable "vpc_cidr_prod" {
-    description = "aws vpc cidr block production"
+
+variable "vpc_cidr" {
+    description = "aws vpc cidr block"
     default = "10.0.0.0/16"
 }
 
-variable "public_subnet_a_prod" {
+variable "public_subnet_a" {
     description = "public subnet"
     default = "10.0.1.0/24"
 }
 
-variable "public_subnet_c_prod" {
+variable "public_subnet_c" {
     description = "public subnet"
     default = "10.0.2.0/24"
 }
 
-variable "ap_private_subnet_a_prod" {
+variable "ap_private_subnet_a" {
     description = "ap private subnet"
     default = "10.0.3.0/24"
 }
 
-variable "ap_private_subnet_c_prod" {
+variable "ap_private_subnet_c" {
     description = "ap private subnet"
     default = "10.0.4.0/24"
 }
 
-variable "db_private_subnet_a_prod" {
+variable "db_private_subnet_a" {
     description = "db private subnet"
     default = "10.0.5.0/24"
 }
 
-variable "db_private_subnet_c_prod" {
+variable "db_private_subnet_c" {
     description = "db private subnet"
     default = "10.0.6.0/24"
-}
-
-########################## DEV #########################
-variable "vpc_cidr_dev" {
-    description = "aws vpc cidr block development"
-    default = "10.1.0.0/16"
-}
-
-variable "public_subnet_a_dev" {
-    description = "public subnet"
-    default = "10.1.1.0/24"
-}
-
-variable "public_subnet_c_dev" {
-    description = "public subnet"
-    default = "10.1.2.0/24"
-}
-
-variable "ap_private_subnet_a_dev" {
-    description = "ap private subnet"
-    default = "10.1.3.0/24"
-}
-
-variable "ap_private_subnet_c_dev" {
-    description = "ap private subnet"
-    default = "10.1.4.0/24"
-}
-
-variable "db_private_subnet_a_dev" {
-    description = "db private subnet"
-    default = "10.1.5.0/24"
-}
-
-variable "db_private_subnet_c_dev" {
-    description = "db private subnet"
-    default = "10.1.6.0/24"
 }
 
 variable "key_pair_ec2_web" {

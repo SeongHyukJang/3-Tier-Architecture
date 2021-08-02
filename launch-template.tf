@@ -1,10 +1,10 @@
-resource "aws_launch_template" "ec2_web_template_dev" {
-    name = "70491_ec2_web_template_dev"
+resource "aws_launch_template" "ec2_web_template" {
+    name = "70491_ec2_web_template"
     description = "Web server template"
     image_id = "ami-083f180672c93c576"
     instance_type = "t2.micro"
     key_name = "70491_ec2_web"
-    vpc_security_group_ids = [aws_security_group.web_sg_dev.id]
+    vpc_security_group_ids = [aws_security_group.web_sg.id]
 
     user_data = filebase64("./run_web.sh")
 
@@ -17,13 +17,13 @@ resource "aws_launch_template" "ec2_web_template_dev" {
     }
 }
 
-resource "aws_launch_template" "ec2_was_template_dev" {
-    name = "70491_ec2_was_template_dev"
+resource "aws_launch_template" "ec2_was_template" {
+    name = "70491_ec2_was_template"
     description = "WAS server template"
     image_id = "ami-0b6283abdc580cab0"
     instance_type = "t2.micro"
     key_name = "70491_ec2_was"
-    vpc_security_group_ids = [aws_security_group.was_sg_dev.id]
+    vpc_security_group_ids = [aws_security_group.was_sg.id]
 
     user_data = filebase64("./run_was.sh")
 

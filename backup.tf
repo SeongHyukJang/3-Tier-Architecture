@@ -20,7 +20,7 @@ resource "aws_backup_selection" "backup_web" {
     selection_tag {
         type = "STRINGEQUALS"
         key = "Name"
-        value = "70491-WEB_prod"
+        value = "70491-WEB"
     }
 }
 
@@ -32,7 +32,7 @@ resource "aws_backup_selection" "backup_was" {
     selection_tag {
         type = "STRINGEQUALS"
         key = "Name"
-        value = "70491-WAS_prod"
+        value = "70491-WAS"
     }
 }
 
@@ -44,6 +44,6 @@ resource "aws_backup_selection" "backup_db" {
     selection_tag {
         type = "STRINGEQUALS"
         key = "Name"
-        value = "70491-DB_prod"
+        value = "70491-DB"
     }   
 }
