@@ -9,6 +9,6 @@ resource "aws_eks_cluster" "eks_cluster" {
         public_access_cidrs = ["0.0.0.0/0"]
 
         subnet_ids = [aws_subnet.public_subnet_a.id, aws_subnet.public_subnet_c.id,
-                    aws_subnet.ap_private_subent_a.id, aws_subnet.ap_private_subent_c.id]
+                    aws_subnet.ap_private_subnet_a.id, aws_subnet.ap_private_subnet_c.id]
     }
 }
