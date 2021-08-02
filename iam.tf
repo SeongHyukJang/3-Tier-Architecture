@@ -387,7 +387,7 @@ resource "aws_iam_role_policy" "codebuild_vpc_role_policy" {
             "Condition": {
                 "StringEquals": {
                     "ec2:Subnet": [
-                        "arn:aws:ec2:ap-northeast-2:533616270150:subnet/subnet-0a9145ff82be0ca76",
+                        "arn:aws:ec2:ap-northeast-2:533616270150:subnet/subnet-0014963b2c0fe9b8c",
                         "arn:aws:ec2:ap-northeast-2:533616270150:subnet/subnet-0b041dad24d8273e7"
                     ],
                     "ec2:AuthorizedService": "codebuild.amazonaws.com"
