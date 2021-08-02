@@ -1,6 +1,6 @@
 ############################# WEB NLB #################################
-resource "aws_lb" "web_elb_dev" {
-    name = "70491-web-elb-dev"
+resource "aws_lb" "web_alb_dev" {
+    name = "70491-web-alb-dev"
     internal = false
     load_balancer_type = "application"
     security_groups = [aws_security_group.alb_sg_dev.id]
@@ -15,7 +15,7 @@ resource "aws_lb_target_group" "ec2_web_target_group_dev" {
 }
 
 resource "aws_lb_listener" "web_alb_listener_dev" {
-    load_balancer_arn = aws_lb.web_elb_dev.arn
+    load_balancer_arn = aws_lb.web_alb_dev.arn
     port = "80"
     protocol = "HTTP"
 
