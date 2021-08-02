@@ -27,8 +27,8 @@ resource "aws_eks_node_group" "web_node_group" {
         max_size = 2
     }
     depends_on = [
-    aws_iam_role_policy_attachment.AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.node_node_role_attach,
+    aws_iam_role_policy_attachment.node_CNI_role_attach,
+    aws_iam_role_policy_attachment.node_container_role_attach,
   ]
 }
