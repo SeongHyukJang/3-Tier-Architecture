@@ -36,7 +36,7 @@ resource "aws_subnet" "ap_private_subnet_a" {
 
   tags = {
     Name = "70491_ap_private_subnet_a"
-    "kubernetes.io/cluster/${aws_eks_cluster.eks_cluster.name}" = "shared"
+    "kubernetes.io/cluster/70491-eks-cluster" = "shared"
   }
 }
 
@@ -47,7 +47,7 @@ resource "aws_subnet" "ap_private_subnet_c" {
 
   tags = {
     Name = "70491_ap_private_subnet_c"
-    "kubernetes.io/cluster/${aws_eks_cluster.eks_cluster.name}" = "shared"
+    "kubernetes.io/cluster/70491-eks-cluster" = "shared"
   }
 }
 
