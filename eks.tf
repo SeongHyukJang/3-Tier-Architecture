@@ -19,7 +19,7 @@ resource "aws_eks_node_group" "web_node_group" {
     node_role_arn = aws_iam_role.node_role.arn
     subnet_ids = [aws_subnet.ap_private_subnet_a.id, aws_subnet.ap_private_subnet_c.id]
     instance_types = ["t3.medium"]
-    disk_size = 8
+    disk_size = 20
 
     scaling_config {
         desired_size = 1
