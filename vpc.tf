@@ -15,6 +15,7 @@ resource "aws_subnet" "public_subnet_a" {
 
   tags = {
     Name = "70491_public_subnet_a"
+    "kubernetes.io/cluster/70491-eks-cluster" = "shared"
     "kubernetes.io/role/elb" = 1
   }
 }
@@ -26,6 +27,7 @@ resource "aws_subnet" "public_subnet_c" {
 
   tags = {
     Name = "70491_public_subnet_c"
+    "kubernetes.io/cluster/70491-eks-cluster" = "shared"
     "kubernetes.io/role/elb" = 1
   }
 }
