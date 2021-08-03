@@ -12,11 +12,10 @@ resource "aws_subnet" "public_subnet_a" {
   vpc_id = aws_vpc.main_vpc.id
   cidr_block = var.public_subnet_a
   availability_zone = var.az_a
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "70491_public_subnet_a"
-    "kubernetes.io/cluster/70491-eks-cluster" = "shared"
-    "kubernetes.io/role/elb" = 1
   }
 }
 
@@ -24,11 +23,10 @@ resource "aws_subnet" "public_subnet_c" {
   vpc_id = aws_vpc.main_vpc.id
   cidr_block = var.public_subnet_c
   availability_zone = var.az_c
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "70491_public_subnet_c"
-    "kubernetes.io/cluster/70491-eks-cluster" = "shared"
-    "kubernetes.io/role/elb" = 1
   }
 }
 
