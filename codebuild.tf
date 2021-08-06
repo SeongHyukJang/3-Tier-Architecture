@@ -66,7 +66,7 @@ resource "aws_codebuild_project" "codebuild_project_WAS" {
         image = "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
         type = "LINUX_CONTAINER"
         compute_type = "BUILD_GENERAL1_SMALL"
-
+        privileged_mode = true
     }
 
     vpc_config {
