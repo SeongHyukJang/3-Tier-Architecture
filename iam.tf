@@ -324,7 +324,8 @@ resource "aws_iam_role_policy" "codedeploy_policy" {
       "Effect":"Allow",
       "Action":[
         "ecr:*"
-      ]
+      ],
+      "Resource": "*"
     }
   ]
 }) 
