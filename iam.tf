@@ -312,26 +312,6 @@ resource "aws_iam_role" "codedeploy_role" {
 EOF
 }
 
-resource "aws_iam_role_policy" "codedeploy_policy" {
-  name = "70491-codepipeline-policy"
-  role = aws_iam_role.codedeploy_role.name
-
-  policy = jsonencode({
-  "Version":"2012-10-17",
-  "Statement":[
-    {
-      "Sid":"CodeBuildAccessPrincipal",
-      "Effect":"Allow",
-      "Action":[
-        "ecr:*"
-      ],
-      "Resource": "*"
-    }
-  ]
-}) 
-}
-
-
 resource "aws_iam_role_policy_attachment" "codedeploy_role_attach" {
     role = aws_iam_role.codedeploy_role.name
     policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
@@ -367,6 +347,26 @@ resource "aws_iam_role" "codebuild_role" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy" "codebuild_policy" {
+  name = "70491-codebuild-policy-ecr"
+  role = aws_iam_role.codebuild_role.name
+
+  policy = jsonencode({
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Sid":"CodeBuildAccessPrincipal",
+      "Effect":"Allow",
+      "Action":[
+        "ecr:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}) 
+}
+
 
 resource "aws_iam_role_policy_attachment" "codebuild_s3_role_attach" {
     role = aws_iam_role.codebuild_role.name
