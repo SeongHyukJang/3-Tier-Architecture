@@ -322,13 +322,8 @@ resource "aws_iam_role_policy" "codedeploy_policy" {
     {
       "Sid":"CodeBuildAccessPrincipal",
       "Effect":"Allow",
-      "Principal":{
-        "Service":"codebuild.amazonaws.com"
-      },
       "Action":[
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:BatchGetImage",
-        "ecr:BatchCheckLayerAvailability"
+        "ecr:*"
       ]
     }
   ]
