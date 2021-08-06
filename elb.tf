@@ -23,8 +23,22 @@ resource "aws_lb_listener" "web_alb_listener" {
       type = "forward"
       target_group_arn = aws_lb_target_group.ec2_web_target_group.arn
     }
-  
 }
+
+resource "aws_lb_listener" "web_alb_listener_https"{
+    load_balancer_arn = aws_lb.web_elb.arn
+    port = "443"
+    protocol = "HTTPS"
+    ssl_policy        = "ELBSecurityPolicy-2016-08"
+    certificate_arn   = "arn:aws:acm:ap-northeast-2:533616270150:certificate/ad70a98d-9d5d-4571-be33-b83a4a5364ec"
+
+    default_action {
+      type = "forward"
+      target_group_arn = aws_lb_target_group.ec2_web_target_group.arn
+    }
+}
+
+
 
 #######################################################################
 ############################# WAS NLB #################################
