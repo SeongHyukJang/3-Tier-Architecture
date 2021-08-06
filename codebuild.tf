@@ -62,6 +62,17 @@ resource "aws_codebuild_project" "codebuild_project_WAS" {
         location = "https://git-codecommit.ap-northeast-2.amazonaws.com/v1/repos/70491-repo-was"   
     }
 
+    artifacts {
+      type = "S3"
+      location = "70491-codedeploy-bucket"
+      name = "70491-codebuild_WAS"
+
+      encryption_disabled = true
+
+      namespace_type = "NONE"
+      packaging = "NONE"
+    }
+
     environment {
         image = "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
         type = "LINUX_CONTAINER"
