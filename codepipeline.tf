@@ -115,23 +115,4 @@ resource "aws_codepipeline" "codepipeline_WAS" {
             }
         }
     }
-
-    stage {
-        name = "Deploy"
-
-        action {
-            name = "Deploy"
-            category = "Deploy"
-            owner = "AWS"
-            provider = "CodeDeploy"
-            version = "1"
-
-            input_artifacts = ["BuildArtifact"]
-
-            configuration = {
-              "ApplicationName" = "70491-codedeploy-app-WAS"
-              "DeploymentGroupName" = "70491-codedeploy-group_WAS"
-            }
-        }
-    }
 }
