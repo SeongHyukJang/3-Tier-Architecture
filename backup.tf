@@ -20,7 +20,7 @@ resource "aws_backup_selection" "backup_web" {
     selection_tag {
         type = "STRINGEQUALS"
         key = "Name"
-        value = "70491-WEB"
+        value = "70491_WEB"
     }
 }
 
